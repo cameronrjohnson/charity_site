@@ -1,0 +1,13 @@
+{
+  "schema": [
+    "id",
+    "name",
+    "cause",
+    "serviceArea",
+    "summary",
+    "sourceUrl",
+    "officialUrl",
+    "lastReviewed"
+  ],
+  "charities": []
+}

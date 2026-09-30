@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Static low-fidelity Charity Finder wireframe.">
+  <title>Charity Finder | Wireframe</title>
+  <link rel="stylesheet" href="css/wireframe.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="topline">Charity Finder <span>Static wireframe</span></div>
+  <header class="site-header">
+    <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">Logo</span><span>Charity Finder</span></a>
+    <nav aria-label="Page sections">
+      <a href="#home" aria-current="location">Home</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#results">Results</a>
+      <a href="#browse">Browse</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="wireframe-section home" id="home" aria-labelledby="home-title">
+      <p class="section-label">01 / Home page</p>
+      <div class="hero-layout">
+        <div>
+          <div class="text-placeholder short">Eyebrow / tagline</div>
+          <h1 id="home-title">Find a charity that fits what matters to you.</h1>
+          <div class="text-placeholder copy">Short introduction text about the charity-finding service and what a visitor can do here.</div>
+          <div class="button-row">
+            <a class="button-sample primary" href="#quiz">Start the quiz <span aria-hidden="true">&#8594;</span></a>
+            <a class="button-sample" href="#browse">Browse charities</a>
+          </div>
+          <div class="text-placeholder note">Brief trust / data-source note</div>
+        </div>
+        <div class="image-placeholder" aria-label="Placeholder for a hero image" role="img">Image / illustration</div>
+      </div>
+      <div class="steps-grid" aria-label="Three steps">
+        <div class="step"><span>01</span><div><strong>Choose causes</strong><p>One-line step description</p></div></div>
+        <div class="step"><span>02</span><div><strong>Compare matches</strong><p>One-line step description</p></div></div>
+        <div class="step"><span>03</span><div><strong>Review sources</strong><p>One-line step description</p></div></div>
+      </div>
+    </section>
+
+    <section class="wireframe-section" id="quiz" aria-labelledby="quiz-title">
+      <p class="section-label">02 / Quiz</p>
+      <div class="section-header">
+        <div><p class="kicker">Question 1 of 3</p><h2 id="quiz-title">What cause would you like to support?</h2></div>
+        <span class="control-sample">Back</span>
+      </div>
+      <div class="progress-row"><span>Progress</span><span>33%</span></div>
+      <div class="progress-track" aria-hidden="true"><span></span></div>
+      <p class="supporting-copy">Short prompt to help the visitor answer the question.</p>
+      <div class="choice-grid" aria-label="Example answer choices">
+        <div class="choice"><span class="radio" aria-hidden="true"></span>Food security</div>
+        <div class="choice"><span class="radio" aria-hidden="true"></span>Education</div>
+        <div class="choice"><span class="radio" aria-hidden="true"></span>Environment</div>
+        <div class="choice"><span class="radio" aria-hidden="true"></span>Health</div>
+      </div>
+      <div class="control-row"><span class="control-sample">Back</span><span class="control-sample primary">Continue &#8594;</span></div>
+    </section>
+
+    <section class="wireframe-section" id="results" aria-labelledby="results-title">
+      <p class="section-label">03 / Results</p>
+      <div class="section-header results-heading">
+        <div><p class="kicker">Your shortlist</p><h2 id="results-title">Charities to explore</h2><p class="supporting-copy">Short explanation of why these matches are shown.</p></div>
+        <span class="control-sample">Retake quiz</span>
+      </div>
+      <div class="results-layout">
+        <div class="result-list">
+          <article class="result-row"><div class="logo-placeholder">Logo</div><div class="result-copy"><h3>Charity name</h3><p>Short mission summary goes here.</p><div class="tag-row"><span>Cause</span><span>Service area</span></div></div><span class="control-sample">Details &#8594;</span></article>
+          <article class="result-row"><div class="logo-placeholder">Logo</div><div class="result-copy"><h3>Charity name</h3><p>Short mission summary goes here.</p><div class="tag-row"><span>Cause</span><span>Service area</span></div></div><span class="control-sample">Details &#8594;</span></article>
+          <article class="result-row"><div class="logo-placeholder">Logo</div><div class="result-copy"><h3>Charity name</h3><p>Short mission summary goes here.</p><div class="tag-row"><span>Cause</span><span>Service area</span></div></div><span class="control-sample">Details &#8594;</span></article>
+        </div>
+        <aside class="side-note"><strong>Source / trust note</strong><p>Space for data source, last reviewed date, or a note about recommendations.</p></aside>
+      </div>
+    </section>
+
+    <section class="wireframe-section" id="browse" aria-labelledby="browse-title">
+      <p class="section-label">04 / Browse charities</p>
+      <div class="section-header">
+        <div><p class="kicker">Explore organizations</p><h2 id="browse-title">Browse all charities</h2></div>
+        <span class="control-sample">Filter &#9662;</span>
+      </div>
+      <div class="browse-tools">
+        <div class="input-placeholder">Search by charity name or cause</div>
+        <span class="control-sample">Cause &#9662;</span>
+        <span class="control-sample">Location &#9662;</span>
+      </div>
+      <p class="supporting-copy">Charity list / result count</p>
+      <div class="browse-list">
+        <div class="browse-row"><span class="logo-placeholder">Logo</span><div><strong>Charity name</strong><p>Cause · Service area · Short description</p></div><span class="control-sample">View</span></div>
+        <div class="browse-row"><span class="logo-placeholder">Logo</span><div><strong>Charity name</strong><p>Cause · Service area · Short description</p></div><span class="control-sample">View</span></div>
+        <div class="browse-row"><span class="logo-placeholder">Logo</span><div><strong>Charity name</strong><p>Cause · Service area · Short description</p></div><span class="control-sample">View</span></div>
+        <div class="browse-row"><span class="logo-placeholder">Logo</span><div><strong>Charity name</strong><p>Cause · Service area · Short description</p></div><span class="control-sample">View</span></div>
+      </div>
+      <div class="pagination"><span class="control-sample">&#8592; Previous</span><span>1 &nbsp; 2 &nbsp; 3</span><span class="control-sample">Next &#8594;</span></div>
+    </section>
+
+    <section class="wireframe-section about" id="about" aria-labelledby="about-title">
+      <p class="section-label">05 / About and footer</p>
+      <div class="about-layout">
+        <div><p class="kicker">About this project</p><h2 id="about-title">How Charity Finder works</h2><p class="supporting-copy">Short explanation of the matching process, data sources, and limitations.</p></div>
+        <div class="about-placeholder">Additional text / links</div>
+      </div>
+      <footer><span>Logo / site name</span><span>Data sources</span><span>Contact</span><span>Privacy</span></footer>
+    </section>
+  </main>
+</body>
+</html>
