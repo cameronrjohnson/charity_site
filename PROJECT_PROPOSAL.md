@@ -8,6 +8,20 @@
 
 Charity Finder
 
+## Visual Theme
+
+The site uses a calm, welcoming palette from [Coolors](https://coolors.co/67597a-544e61-6e8894-85baa1-ceeddb):
+
+| Color | Hex | Use |
+| --- | --- | --- |
+| Deep charcoal purple | `#544e61` | Primary buttons and main text |
+| Muted purple | `#67597a` | Secondary text and focus indicators |
+| Blue gray | `#6e8894` | Borders and structural details |
+| Soft green | `#85baa1` | Progress and small accents |
+| Pale mint | `#ceeddb` | Highlighted and placeholder backgrounds |
+
+White surfaces keep the page readable and let the colors provide gentle emphasis.
+
 ## Team with Contact Information
 
 N/A
