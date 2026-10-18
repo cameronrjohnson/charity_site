@@ -79,6 +79,8 @@ I plan on spending around 12 hours a week on each task.
 
 I will use my home computer to build the site. I plan on publishing the site through GitHub Pages and using Supabase as my free database to store user information and authentication. I will do my learning through YouTube and ChatGPT.
 
+The static site uses Supabase Auth for email-and-password sign-in. Its client-side publishable key is configured in `js/supabase-client.js`; never put a Supabase `service_role` key in browser code. For immediate sign-in after account creation, disable email confirmation in Supabase Auth settings and set the deployed site URL in the project's URL configuration. Any future user data tables must use Row Level Security policies.
+
 ## Dependencies
 
 My IDE of choice is VS Code. My home computer runs on Windows, and I will be programming the site in JavaScript with the React framework. I plan on using OpenAI’s free tier to help with the chatbot.

@@ -210,9 +210,15 @@ body.home-page > main { display: flex; flex: 1; flex-direction: column; }
 .field-label { display: block; margin: 16px 0 6px; font-size: 13px; font-weight: 700; }
 .login-panel input { width: 100%; height: 42px; padding: 9px 11px; border: 1px solid var(--line); background: var(--canvas); font: inherit; }
 .login-submit { width: 100%; margin-top: 20px; padding: 11px; border: 0; background: var(--ink); color: var(--paper); font: inherit; }
-.login-submit:disabled { opacity: .65; }
+.login-submit:disabled { cursor: wait; opacity: .65; }
 .login-panel .draft-disclaimer { text-align: center; }
 .login-signup { margin: 21px 0 0; padding-top: 18px; border-top: 1px solid var(--line); color: var(--plum); font-size: 13px; text-align: center; }
+.login-toggle-button { padding: 0; border: 0; background: none; color: var(--ink); font: inherit; text-decoration: underline; text-decoration-color: var(--green); text-underline-offset: 3px; cursor: pointer; }
+.login-toggle-button:hover { color: var(--plum); }
+.auth-message { margin: 15px 0 0; color: var(--plum); font-size: 13px; }
+.auth-message[data-state="error"] { color: #9a3434; }
+.signed-in-view > p { margin-top: 18px; overflow-wrap: anywhere; }
+.login-panel [hidden] { display: none; }
 .login-signup span { color: var(--ink); text-decoration: underline; text-decoration-color: var(--green); text-underline-offset: 3px; }
 .secondary-entry-link { margin-left: 18px; font-size: 13px; font-weight: 400; }
 .charity-profile { max-width: 1100px; }
