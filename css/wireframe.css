@@ -242,6 +242,27 @@ body.home-page > main { display: flex; flex: 1; flex-direction: column; }
 .comments-heading .eyebrow { margin-bottom: 6px; }
 .preview-label { padding: 5px 8px; border: 1px solid var(--blue-gray); color: var(--plum); font-size: 10px; font-weight: 700; letter-spacing: .7px; }
 .comments-notice { max-width: 650px; color: var(--plum); font-size: 13px; }
+.favorite-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin: 16px 0; }
+.favorite-controls a { font-size: 14px; }
+.favorite-controls button, .saved-charities button, .comments-section button { padding: 9px 14px; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); font: inherit; font-size: 14px; cursor: pointer; }
+.favorite-controls button[aria-pressed="true"], .comment-actions button[aria-pressed="true"] { background: var(--mint); }
+.favorite-controls button:disabled, .saved-charities button:disabled, .comments-section button:disabled { cursor: default; opacity: .6; }
+.community-status { overflow-wrap: anywhere; }
+.community-status[data-state="error"] { color: #9a3434; }
+.saved-charities { margin-bottom: 30px; padding: 24px; background: var(--paper); }
+.saved-charities h2 { font-size: 30px; }
+.saved-charities ul { padding-left: 20px; }
+.saved-charities li { margin: 12px 0; }
+.saved-charities li button { margin-left: 16px; }
+.saved-charities [hidden] { display: none; }
+.community-comment { max-width: 720px; padding: 18px 0; border-top: 1px solid var(--line); }
+.comment-meta time { margin-left: 8px; color: var(--plum); font-weight: 400; }
+.comment-body { white-space: pre-wrap; overflow-wrap: anywhere; }
+.comment-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.comment-form { display: grid; gap: 8px; max-width: 720px; margin-top: 20px; padding-top: 17px; border-top: 1px solid var(--line); }
+.comment-form textarea { width: 100%; min-height: 90px; padding: 11px; resize: vertical; border: 1px solid var(--line); background: var(--paper); font: inherit; }
+.comment-form button { justify-self: start; background: var(--ink); color: var(--paper); }
+.comments-section [hidden] { display: none; }
 .comment-preview { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 13px; max-width: 720px; padding: 18px 0; border-top: 1px solid var(--line); }
 .comment-avatar { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 50%; background: var(--mint); color: var(--ink); font-size: 13px; }
 .comment-preview p { margin-bottom: 0; font-size: 14px; }

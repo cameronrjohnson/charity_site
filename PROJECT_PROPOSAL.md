@@ -79,7 +79,17 @@ I plan on spending around 12 hours a week on each task.
 
 I will use my home computer to build the site. I plan on publishing the site through GitHub Pages and using Supabase as my free database to store user information and authentication. I will do my learning through YouTube and ChatGPT.
 
-The static site uses Supabase Auth for email-and-password sign-in. Its client-side publishable key is configured in `js/supabase-client.js`; never put a Supabase `service_role` key in browser code. For immediate sign-in after account creation, disable email confirmation in Supabase Auth settings and set the deployed site URL in the project's URL configuration. Any future user data tables must use Row Level Security policies.
+The static site uses Supabase Auth for email-and-password sign-in. Its client-side publishable key is configured in `js/supabase-client.js`; never put a Supabase `service_role` key in browser code. For immediate sign-in after account creation, disable email confirmation in Supabase Auth settings and set the deployed site URL in the project's URL configuration.
+
+### User data setup
+
+Run [the user community migration](supabase/migrations/20261024000100_user_community.sql) once in the Supabase SQL editor before using comments or favorites. Alternatively, apply it through the Supabase CLI migration workflow after linking this project. Serve the site over HTTP locally (for example, `python -m http.server 8765`) or deploy it to GitHub Pages; do not open it with `file://`.
+
+The migration creates `comments`, `comment_likes`, and `favorites` with Row Level Security. Signed-in users can post and delete their own comments, like/unlike comments, and save/remove charities. Each user can like a comment or save a charity only once. Deleting a comment removes its likes; deleting an Auth user removes their comments, likes, and favorites. Comments are limited to 2,000 characters and are publicly readable through `get_charity_comments`, which returns 20 at a time without exposing user IDs or email addresses. Comment author labels are "You" or "Community member" until public profiles exist. Direct table reads and deletes are restricted to the current user's rows, and updates are not permitted.
+
+Saved charities are private and accessible in the directory's **Your saved charities** section. The temporary `charity_id` enum and `js/charities.js` share the IDs `direct-relief`, `donorschoose`, and `nature-conservancy`. Add new enum values and registry entries together until a real charities table replaces them. Database errors appear in the page rather than falling back to sample data.
+
+Run the JavaScript data-access tests with `node --experimental-vm-modules --test tests/community-data.test.mjs`. The rollback-only database tests in `supabase/tests/database/user_community.test.sql` exercise ownership, public discussion reads, constraints, and cascading deletes using two temporary users. Run them with `supabase test db --linked` after linking the intended project; the CLI test runner requires Docker Desktop. The test transaction rolls back its fixtures and any test extension installation.
 
 ## Dependencies
 
