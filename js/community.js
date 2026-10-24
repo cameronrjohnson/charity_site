@@ -82,7 +82,7 @@ function renderFavorites() {
       const notice = document.createElement("p");
       notice.textContent = !userId ? "Sign in to see your saved charities."
         : !favoritesReady ? "Saved charities could not be loaded. Try again."
-          : "No saved charities yet. Use Save charity below to keep one for later.";
+          : "No saved charities yet. Browse the directory to save one for later.";
       savedList.append(notice);
     } else {
       const list = document.createElement("ul");
@@ -117,7 +117,7 @@ function renderComments() {
     article.className = "community-comment";
     const meta = document.createElement("p");
     meta.className = "comment-meta";
-    meta.textContent = comment.is_mine ? "You " : "Community member ";
+    meta.textContent = `${comment.author_username}${comment.is_mine ? " (you)" : ""} `;
     const date = document.createElement("time");
     date.dateTime = comment.created_at;
     date.textContent = new Date(comment.created_at).toLocaleString();

@@ -255,6 +255,16 @@ body.home-page > main { display: flex; flex: 1; flex-direction: column; }
 .saved-charities li { margin: 12px 0; }
 .saved-charities li button { margin-left: 16px; }
 .saved-charities [hidden] { display: none; }
+.account-profile { width: 100%; max-width: 900px; }
+.account-profile [hidden] { display: none; }
+.profile-settings { margin-bottom: 30px; padding: 24px; background: var(--paper); }
+.profile-settings h2 { font-size: 30px; }
+.profile-settings input { width: 100%; max-width: 440px; padding: 10px; border: 1px solid var(--line); font: inherit; }
+.profile-settings #username-help { margin-top: 8px; font-size: 13px; }
+.profile-settings .button-link { border: 0; cursor: pointer; }
+.profile-settings button:disabled { opacity: .6; cursor: default; }
+.profile-settings > button { margin: 20px 20px 0 0; }
+.comment-meta { overflow-wrap: anywhere; }
 .community-comment { max-width: 720px; padding: 18px 0; border-top: 1px solid var(--line); }
 .comment-meta time { margin-left: 8px; color: var(--plum); font-weight: 400; }
 .comment-body { white-space: pre-wrap; overflow-wrap: anywhere; }

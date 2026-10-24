@@ -53,3 +53,21 @@ export async function setFavorite(charityId, saved) {
     check(await supabase.from("favorites").delete().eq("charity_id", charityId));
   }
 }
+
+export async function getProfile(userId) {
+  return check(await supabase.from("profiles").select("username")
+    .eq("user_id", userId).single());
+}
+
+export async function updateUsername(userId, username) {
+  const trimmedUsername = username.trim();
+  if (!/^[A-Za-z0-9_]{3,40}$/.test(trimmedUsername)) {
+    throw new Error("Usernames must be 3-40 letters, numbers, or underscores.");
+  }
+  const result = await supabase.from("profiles").update({ username: trimmedUsername })
+    .eq("user_id", userId).select("username").single();
+  if (result.error?.code === "23505") {
+    throw new Error("That username is already taken. Please choose another.");
+  }
+  return check(result);
+}

@@ -6,7 +6,7 @@ import vm from "node:vm";
 async function setup(result = { data: [], error: null }) {
   const calls = [];
   const query = {};
-  for (const method of ["select", "insert", "delete", "eq", "order"]) {
+  for (const method of ["select", "insert", "delete", "eq", "order", "single", "update"]) {
     query[method] = (...args) => {
       calls.push([method, ...args]);
       return query;
@@ -104,4 +104,40 @@ test("deleting an owned comment confirms the returned row", async () => {
   assert.deepEqual(JSON.parse(JSON.stringify(calls)), [
     ["from", "comments"], ["delete"], ["eq", "id", "comment-1"], ["select", "id"],
   ]);
+});
+
+test("profile reads request only the current user's public username", async () => {
+  const { api, calls } = await setup({ data: { username: "River" }, error: null });
+  assert.equal((await api.getProfile("user-1")).username, "River");
+  assert.deepEqual(JSON.parse(JSON.stringify(calls)), [
+    ["from", "profiles"], ["select", "username"], ["eq", "user_id", "user-1"], ["single"],
+  ]);
+});
+
+test("username updates trim whitespace and change only username", async () => {
+  const { api, calls } = await setup({ data: { username: "River_2" }, error: null });
+  assert.equal((await api.updateUsername("user-1", " River_2 ")).username, "River_2");
+  assert.deepEqual(JSON.parse(JSON.stringify(calls)), [
+    ["from", "profiles"], ["update", { username: "River_2" }],
+    ["eq", "user_id", "user-1"], ["select", "username"], ["single"],
+  ]);
+});
+
+test("username format validation rejects invalid values before querying", async () => {
+  const { api, calls } = await setup();
+  for (const value of ["", "ab", "a".repeat(41), "two words", "<script>", "name@example.com"]) {
+    await assert.rejects(api.updateUsername("user-1", value), /3-40/);
+  }
+  assert.equal(calls.length, 0);
+  await api.updateUsername("user-1", "abc");
+  await api.updateUsername("user-1", "a".repeat(40));
+});
+
+test("username conflicts have a useful message and other errors propagate", async () => {
+  const duplicate = await setup({ data: null, error: { code: "23505", message: "duplicate key" } });
+  await assert.rejects(duplicate.api.updateUsername("user-1", "River"), /already taken/);
+  const failure = { code: "42501", message: "Permission denied" };
+  const { api } = await setup({ data: null, error: failure });
+  await assert.rejects(api.getProfile("user-1"), (error) => error === failure);
+  await assert.rejects(api.updateUsername("user-1", "River"), (error) => error === failure);
 });

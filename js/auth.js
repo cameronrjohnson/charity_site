@@ -34,8 +34,12 @@ function clearMessage() {
 
 function renderSession(session) {
   if (loginLink) {
-    loginLink.textContent = session ? "Log out" : "Log in";
-    loginLink.dataset.authenticated = String(Boolean(session));
+    loginLink.textContent = session ? "Your profile" : "Log in";
+    loginLink.href = session ? "profile.html" : "login.html";
+    loginLink.removeAttribute("aria-current");
+    if (window.location.pathname.endsWith(session ? "/profile.html" : "/login.html")) {
+      loginLink.setAttribute("aria-current", "page");
+    }
   }
 
   if (authForm) authForm.hidden = Boolean(session);
@@ -115,22 +119,6 @@ logoutButton?.addEventListener("click", async () => {
     showMessage(error.message || "Could not sign out. Please try again.", "error");
   } finally {
     logoutButton.disabled = false;
-  }
-});
-
-loginLink?.addEventListener("click", async (event) => {
-  if (loginLink.dataset.authenticated !== "true") return;
-
-  event.preventDefault();
-  try {
-    await signOut();
-    if (window.location.pathname.endsWith("/login.html")) {
-      showMessage("You are signed out.");
-    } else {
-      window.location.assign("login.html");
-    }
-  } catch (error) {
-    window.alert(error.message || "Could not sign out. Please try again.");
   }
 });
 
