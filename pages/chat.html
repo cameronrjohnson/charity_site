@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore causes and donation research with a free, on-device AI assistant.">
+  <title>AI chat | Charity Finder</title>
+  <link rel="stylesheet" href="../css/wireframe.css">
+  <script>
+    if (window.parent !== window && new URLSearchParams(location.search).get("embedded") === "1") {
+      document.documentElement.classList.add("chat-embedded");
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">CF</span><span>Charity Finder</span></a><nav class="primary-nav" aria-label="Main navigation"><a href="../index.html">Home</a><a href="charities.html">Charities</a><a href="quiz.html">Take the quiz</a></nav><a class="login-link" href="login.html">Log in</a></header>
+  <main id="main" class="page-main chat-page">
+    <div class="page-heading"><p class="eyebrow">A guide for your research</p><h1>Ask about <span>giving.</span></h1></div>
+    <section class="chat-window" aria-labelledby="chat-title">
+      <h2 id="chat-title" class="sr-only">Charity Finder assistant</h2>
+      <div class="chat-start-panel">
+        <p>Initial download: about 700 MB. Requires WebGPU. Messages stay on your device.</p>
+        <button id="chat-start" type="button">Start free assistant</button>
+        <progress id="chat-progress" max="1" aria-label="Model download progress" hidden></progress>
+      </div>
+      <p id="chat-status" class="chat-status" role="status" hidden></p>
+      <div id="chat-messages" class="chat-messages" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions text"></div>
+      <form id="chat-form" class="chat-composer">
+        <label class="sr-only" for="chat-input">Your message</label>
+        <textarea id="chat-input" rows="2" maxlength="400" placeholder="What causes matter to you?" required disabled aria-describedby="chat-counter"></textarea>
+        <button id="chat-send" type="submit" title="Send message" aria-label="Send message" disabled><i data-lucide="arrow-up" aria-hidden="true"></i></button>
+        <button id="chat-stop" type="button" title="Stop response" aria-label="Stop response" hidden><i data-lucide="square" aria-hidden="true"></i></button>
+      </form>
+      <div class="chat-composer-meta"><span id="chat-counter" hidden>0 / 400</span><a class="chat-attribution" href="https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q4f32_1-MLC/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" title="Model license. AI can make mistakes; verify before donating.">Built with Llama</a><button class="chat-reset" id="chat-clear" type="button" title="New conversation" aria-label="New conversation" disabled><i data-lucide="rotate-ccw" aria-hidden="true"></i></button></div>
+      <noscript><p class="chat-status">JavaScript is required for the assistant. You can still browse the charity directory.</p></noscript>
+    </section>
+    <a class="back-link" href="quiz.html">&#8592; Back to the quiz</a>
+  </main>
+  <footer class="site-footer"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">CF</span><span>Charity Finder</span></a><span>Explore carefully. Give thoughtfully.</span></footer>
+  <script type="module" src="../js/auth.js"></script>
+  <script type="module" src="../js/chat.js"></script>
+  <script type="module">
+    import { createIcons, ArrowUp, Square, RotateCcw } from "https://esm.sh/lucide@0.468.0";
+    createIcons({ icons: { ArrowUp, Square, RotateCcw } });
+  </script>
+</body>
+</html>

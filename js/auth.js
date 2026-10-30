@@ -35,7 +35,7 @@ function clearMessage() {
 function renderSession(session) {
   if (loginLink) {
     loginLink.textContent = session ? "Your profile" : "Log in";
-    loginLink.href = session ? "profile.html" : "login.html";
+    loginLink.href = new URL(session ? "../pages/profile.html" : "../pages/login.html", import.meta.url).href;
     loginLink.removeAttribute("aria-current");
     if (window.location.pathname.endsWith(session ? "/profile.html" : "/login.html")) {
       loginLink.setAttribute("aria-current", "page");
