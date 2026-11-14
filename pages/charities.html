@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Browse a small static directory of organizations by cause.">
+  <meta name="description" content="Search nonprofits through the Every.org directory and browse featured organizations by cause.">
   <title>Charities | Charity Finder</title>
   <link rel="stylesheet" href="../css/wireframe.css">
 </head>
@@ -18,8 +18,26 @@
     <div class="page-heading">
       <p class="eyebrow">The directory</p>
       <h1>Organizations to <span>explore.</span></h1>
-      <p>A small starting list grouped by cause. These profiles summarize information from each organization's official website; they are not ratings or endorsements.</p>
+      <p>Search every U.S. nonprofit through the Every.org directory, or browse our featured profiles below. Results summarize public information; they are not ratings or endorsements.</p>
     </div>
+    <section class="charity-search" aria-labelledby="charity-search-title">
+      <h2 id="charity-search-title">Search all charities</h2>
+      <form id="charity-search-form" role="search">
+        <div class="charity-search-controls">
+          <div class="charity-search-field">
+            <label class="field-label" for="charity-search-input">Charity name or keyword</label>
+            <input type="search" id="charity-search-input" name="q" placeholder="Try &quot;food bank&quot; or &quot;red cross&quot;" autocomplete="off">
+          </div>
+          <div class="charity-search-field">
+            <label class="field-label" for="charity-search-cause">Cause</label>
+            <select id="charity-search-cause" name="cause"><option value="">All causes</option></select>
+          </div>
+        </div>
+      </form>
+      <p class="community-status" id="charity-search-status" role="status" aria-live="polite"></p>
+      <ol class="charity-search-results" id="charity-search-results" aria-label="Charity search results"></ol>
+      <p class="charity-search-attribution">Search powered by the <a href="https://docs.every.org/" target="_blank" rel="noopener noreferrer">Every.org Charity API</a>.</p>
+    </section>
     <section class="saved-charities" id="saved-charities" aria-labelledby="saved-title">
       <h2 id="saved-title">Your saved charities</h2>
       <p>Only you can see your saved list. <span data-auth-hint><a href="login.html">Sign in</a> to save charities for later.</span></p>
@@ -27,6 +45,10 @@
       <button type="button" id="favorites-reload" data-community-action disabled>Refresh saved charities</button>
     </section>
     <p class="community-status" id="community-status" role="status" aria-live="polite"></p>
+    <div class="page-heading">
+      <h2>Featured <span>profiles.</span></h2>
+      <p>A small starting list grouped by cause, with our own research summaries.</p>
+    </div>
     <div class="directory-list">
       <article class="directory-entry">
         <div class="entry-index">01 / HEALTH<div class="favorite-controls"><button type="button" data-favorite="direct-relief" aria-pressed="false" disabled>Save charity</button></div></div>
@@ -51,5 +73,6 @@
   <script type="module" src="../js/auth.js"></script>
   <script type="module" src="../js/chat-widget.js"></script>
   <script type="module" src="../js/community.js"></script>
+  <script type="module" src="../js/charity-search.js"></script>
 </body>
 </html>

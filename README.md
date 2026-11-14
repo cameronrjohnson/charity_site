@@ -28,6 +28,20 @@ Open http://localhost:8765/. Serve over HTTP rather than opening HTML files dire
 
 GitHub Pages can serve this same project root without a build step. Secondary page URLs now start with `pages/`; update any external links or bookmarks that used the old root-level page URLs.
 
+## Deployment and the Every.org API Key
+
+Live charity search uses the [Every.org Nonprofit Search API](https://docs.every.org/docs/endpoints/nonprofits). The key never lives in this public repository; [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml) injects it into [js/charity-api-key.js](js/charity-api-key.js) from a GitHub Actions secret when deploying to GitHub Pages.
+
+One-time setup:
+
+1. Sign in at <https://www.every.org/developer> and create an API key. Copy the **public** key (`pk_live_...`). Never use the private key (`sk_live_...`) anywhere in this project — it belongs only on a backend.
+2. In the GitHub repository, open **Settings → Secrets and variables → Actions → New repository secret**, name it `EVERY_ORG_API_KEY`, and paste the public key as the value.
+3. Open **Settings → Pages** and set **Source** to **GitHub Actions** so the workflow (not branch serving) performs deployments.
+
+Every push to `main` then deploys the site with the key included. Note that an Every.org public key is designed for client-side use and is visible in the deployed site's JavaScript; the secret keeps it out of the source code, not out of the browser.
+
+For local development, paste your public key into [js/charity-api-key.js](js/charity-api-key.js) but do not commit it (`git update-index --skip-worktree js/charity-api-key.js` keeps git from tracking the local edit).
+
 ## Tests
 
 From the project root:
