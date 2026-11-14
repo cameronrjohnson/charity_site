@@ -39,6 +39,7 @@ function normalizeNonprofit(nonprofit) {
     logoUrl: typeof nonprofit.logoUrl === "string" ? nonprofit.logoUrl : "",
     ein: typeof nonprofit.ein === "string" ? nonprofit.ein : "",
     location: typeof nonprofit.location === "string" ? nonprofit.location : "",
+    slug: typeof nonprofit.slug === "string" ? nonprofit.slug : "",
   };
 }
 
@@ -52,4 +53,47 @@ export async function searchCharities(term, options = {}) {
   const payload = await response.json();
   const nonprofits = Array.isArray(payload?.nonprofits) ? payload.nonprofits : [];
   return nonprofits.map(normalizeNonprofit).filter(Boolean);
+}
+
+// Details endpoint: GET /v0.2/nonprofit/:identifier (slug, EIN, or nonprofit ID).
+export function buildNonprofitUrl(identifier, { apiKey = EVERY_ORG_API_KEY } = {}) {
+  const trimmed = typeof identifier === "string" ? identifier.trim() : "";
+  if (!/^[a-z0-9][a-z0-9-]*$/i.test(trimmed)) throw new Error("Select a charity to view its profile.");
+  const url = new URL(`${API_BASE}/nonprofit/${encodeURIComponent(trimmed)}`);
+  url.searchParams.set("apiKey", apiKey);
+  return url.toString();
+}
+
+function text(value) {
+  return typeof value === "string" ? value : "";
+}
+
+export async function getNonprofit(identifier, options = {}) {
+  const { fetchImpl = fetch, signal, apiKey = EVERY_ORG_API_KEY } = options;
+  if (!isApiConfigured(apiKey)) {
+    throw new Error("Charity profiles are not configured yet. Add an Every.org public API key in js/charity-api-key.js.");
+  }
+  const response = await fetchImpl(buildNonprofitUrl(identifier, { apiKey }), { signal });
+  if (response.status === 404) throw new Error("That charity was not found in the Every.org directory.");
+  if (!response.ok) throw new Error(`Charity lookup failed (status ${response.status}).`);
+  const payload = await response.json();
+  const nonprofit = payload?.data?.nonprofit;
+  if (!nonprofit || typeof nonprofit.name !== "string" || !nonprofit.name) {
+    throw new Error("That charity was not found in the Every.org directory.");
+  }
+  const tags = Array.isArray(payload.data.nonprofitTags)
+    ? payload.data.nonprofitTags.map((tag) => text(tag?.title)).filter(Boolean)
+    : [];
+  return {
+    name: nonprofit.name,
+    description: text(nonprofit.descriptionLong) || text(nonprofit.description),
+    profileUrl: text(nonprofit.profileUrl),
+    websiteUrl: text(nonprofit.websiteUrl),
+    logoUrl: text(nonprofit.logoUrl),
+    coverImageUrl: text(nonprofit.coverImageUrl),
+    ein: text(nonprofit.ein),
+    location: text(nonprofit.locationAddress),
+    slug: text(nonprofit.primarySlug),
+    tags,
+  };
 }

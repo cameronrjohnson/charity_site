@@ -50,7 +50,16 @@ function renderResults(charitiesFound) {
     const body = document.createElement("div");
     body.className = "search-result-main";
     const heading = document.createElement("h3");
-    heading.textContent = charity.name;
+    const identifier = charity.slug || charity.ein;
+    if (identifier) {
+      const profileLink = document.createElement("a");
+      profileLink.className = "text-link";
+      profileLink.href = `charity.html?id=${encodeURIComponent(identifier)}`;
+      profileLink.textContent = charity.name;
+      heading.append(profileLink);
+    } else {
+      heading.textContent = charity.name;
+    }
     body.append(heading);
     if (charity.location) {
       const location = document.createElement("p");

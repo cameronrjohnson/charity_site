@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Charity profile with details from the Every.org directory.">
+  <title>Charity profile | Charity Finder</title>
+  <link rel="stylesheet" href="../css/wireframe.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">CF</span><span>Charity Finder</span></a><nav class="primary-nav" aria-label="Main navigation"><a href="../index.html">Home</a><a href="charities.html" aria-current="page">Charities</a><a href="quiz.html">Take the quiz</a></nav><a class="login-link" href="login.html">Log in</a></header>
+  <main id="main" class="page-main charity-profile">
+    <a class="back-link" href="charities.html">&#8592; All charities</a>
+    <p class="community-status" id="charity-profile-status" role="status" aria-live="polite">Loading charity profile...</p>
+    <section class="profile-hero" id="charity-profile-hero" hidden>
+      <div>
+        <p class="eyebrow" id="charity-profile-location"></p>
+        <h1 id="charity-profile-name"></h1>
+        <p id="charity-profile-summary"></p>
+        <a class="button-link" id="charity-profile-website" target="_blank" rel="noopener noreferrer" hidden>Visit official website <span aria-hidden="true">&#8599;</span></a>
+      </div>
+      <img id="charity-profile-image" alt="" hidden>
+    </section>
+    <div class="profile-columns" id="charity-profile-body" hidden>
+      <section class="profile-section">
+        <p class="eyebrow">About the organization</p>
+        <h2>What they do</h2>
+        <p id="charity-profile-description"></p>
+        <p>This summary comes from the public Every.org directory and is not a rating or endorsement. Visit the organization's site for current programs, locations, and reporting.</p>
+        <p><a class="text-link" id="charity-profile-everyorg" target="_blank" rel="noopener noreferrer" hidden>View on Every.org <span aria-hidden="true">&#8599;</span></a></p>
+      </section>
+      <aside class="profile-facts">
+        <h2>Quick facts</h2>
+        <ul id="charity-profile-facts"></ul>
+      </aside>
+    </div>
+    <noscript>Enable JavaScript to load this charity profile.</noscript>
+  </main>
+  <footer class="site-footer"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">CF</span><span>Charity Finder</span></a><span>Profile details provided by the Every.org directory.</span></footer>
+  <a class="chat-fab" href="chat.html" aria-label="Open AI chat" title="Open AI chat"><span class="chat-icon" aria-hidden="true"></span><span>AI chat</span></a>
+  <script type="module" src="../js/auth.js"></script>
+  <script type="module" src="../js/chat-widget.js"></script>
+  <script type="module" src="../js/charity-profile.js"></script>
+</body>
+</html>
