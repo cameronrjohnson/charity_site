@@ -72,7 +72,10 @@ function render(charity) {
 }
 
 async function loadProfile() {
-  const identifier = (new URLSearchParams(window.location.search).get("id") || "").trim();
+  // Tolerate stray trailing slashes or whitespace that creep into shared URLs.
+  const identifier = (new URLSearchParams(window.location.search).get("id") || "")
+    .trim()
+    .replace(/\/+$/, "");
   if (!identifier) {
     setStatus("No charity selected. Search the directory on the charities page, then choose a result.", true);
     return;
